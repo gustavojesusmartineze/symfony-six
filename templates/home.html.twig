@@ -5,7 +5,11 @@
 {# dump(search) #}
 <h1>Welcome, home page</h1>
 
-<p>
-  {{ search }}
-</p>
+<div>
+  {% for comment in comments %}
+    <p>
+      {{ comment.body }}
+    </p>
+  {% endfor %}
+</div>
 {% endblock %}
