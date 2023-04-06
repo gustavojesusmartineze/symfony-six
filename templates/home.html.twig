@@ -6,6 +6,10 @@
 <h1>Welcome, home page</h1>
 
 <div>
+  {{ form(form) }}
+</div>
+
+<div>
   {% for comment in comments %}
     <p>
       {{ comment.body }}
