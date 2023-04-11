@@ -56,4 +56,19 @@ class HomePageController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/contact-v3', methods:['GET', 'POST'], name: 'contactV3')]
+    public function ContactV3(Request $request): Response
+    {
+        $form = $this->createForm(ContactType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($form->getData());
+        }
+
+        return $this->render('home_page/contact-v3.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
