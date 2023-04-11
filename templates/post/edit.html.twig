@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+    <h1>Edit Post! ✅</h1>
+
+    {{ form_start(form, {
+        'method': 'POST',
+        'action': path('app_post_update', { 'id': id }),
+        'attr': {'id': id }
+    }) }}
+
+    {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+{% endblock %}
