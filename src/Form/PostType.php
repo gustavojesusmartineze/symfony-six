@@ -23,15 +23,18 @@ class PostType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'placeholder' => 'Select one...',
-                'label' => 'Categories'
+                'label' => 'Categories',
+                // 'required' => false
             ])
             ->add('title', TextType::class, [
                 'label' => 'Post Title',
-                'help' => 'Think about how SEO will find you'
+                'help' => 'Think about how SEO will find you',
+                // 'required' => false
             ])
             ->add('body', TextareaType::class, [
                 'label' => 'Post Body',
-                'attr' => ['rows' => 9, 'class' => 'bg-light']
+                'attr' => ['rows' => 9, 'class' => 'bg-light'],
+                // 'required' => false
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Send',

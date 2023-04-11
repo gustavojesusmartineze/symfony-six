@@ -5,12 +5,5 @@
 {% block body %}
     <h1>Create Post! ✅</h1>
 
-    {{ form_start(form, {
-        'method': 'POST',
-        'action': '/post/store'
-    }) }}
-
-    {{ form_widget(form) }}
-
-    {{ form_end(form) }}
+    {{ form(form) }}
 {% endblock %}
