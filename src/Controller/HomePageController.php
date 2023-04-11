@@ -2,17 +2,34 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomePageController extends AbstractController
 {
-    #[Route('/home/page', name: 'app_home_page')]
-    public function index(): Response
+    #[Route('/contact-v1', methods:['GET', 'POST'], name: 'contactV1')]
+    public function ContactV1(): Response
     {
-        return $this->render('home_page/index.html.twig', [
-            'controller_name' => 'HomePageController',
+        $form = $this->createFormBUilder()
+            ->add('email', TextType::class)
+            ->add('message', TextareaType::class, [
+                'label' => 'Comment, suggestion or message'
+            ])
+            ->add('agreeTerms', CheckboxType::class, ['priority' => 1,])
+            ->add('save', SubmitType::class, [
+                'label' => 'Send'
+            ])
+            ->setMethod('GET')
+            ->setAction('other-url')
+            ->getForm();
+
+        return $this->render('home_page/contact-v1.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
