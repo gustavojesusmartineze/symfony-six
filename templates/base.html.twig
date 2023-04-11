@@ -8,14 +8,25 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+
+        <style>
+            .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        </style>
     </head>
     <body>
-        <div class="container">
+        {% include '_nav.html.twig' %}
+
+        <div class="container py-5">
             <h1 class="display-2 py-3 mb-4 border-bottom text-center">
                 Symfony Live - April 2023!
             </h1>
+            <div>
+                {% include '_alert.html.twig' %}
 
-            {% block body %}{% endblock %}
+                <div class="example-wrapper">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
         </div>   
     </body>
 </html>

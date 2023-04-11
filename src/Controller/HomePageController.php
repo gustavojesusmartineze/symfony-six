@@ -14,6 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomePageController extends AbstractController
 {
+    #[Route('/home-v1', methods:['GET'], name: 'homeV1')]
+    public function home(Request $request): Response
+    {
+        return $this->render('home_page/index.html.twig');
+    }
+
     #[Route('/contact-v1', methods:['GET', 'POST'], name: 'contactV1')]
     public function ContactV1(Request $request): Response
     {
@@ -34,7 +40,9 @@ class HomePageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // getData() contains every value sent
-            dd($form->getData(), $request);
+            // dd($form->getData(), $request);
+            $this->addFlash('success', 'Test Form #1 succeded');
+            return $this->redirectToRoute('contactV1');
         }
 
         return $this->render('home_page/contact-v1.html.twig', [
@@ -49,7 +57,9 @@ class HomePageController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
+            // dd($form->getData());
+            $this->addFlash('success', 'Test Form #2 succeded');
+            return $this->redirectToRoute('contactV2');
         }
 
         return $this->render('home_page/contact-v2.html.twig', [
@@ -64,7 +74,9 @@ class HomePageController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
+            // dd($form->getData());
+            $this->addFlash('success', 'Test Form #3 succeded');
+            return $this->redirectToRoute('contactV3');
         }
 
         return $this->render('home_page/contact-v3.html.twig', [
