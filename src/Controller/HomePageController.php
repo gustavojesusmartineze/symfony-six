@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,6 +38,21 @@ class HomePageController extends AbstractController
         }
 
         return $this->render('home_page/contact-v1.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/contact-v2', methods:['GET', 'POST'], name: 'contactV2')]
+    public function ContactV2(Request $request): Response
+    {
+        $form = $this->createForm(ContactType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($form->getData());
+        }
+
+        return $this->render('home_page/contact-v2.html.twig', [
             'form' => $form->createView(),
         ]);
     }
