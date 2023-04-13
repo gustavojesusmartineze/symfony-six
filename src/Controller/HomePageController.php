@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Entity\Post;
+use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,9 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomePageController extends AbstractController
 {
     #[Route('/home-v1', methods:['GET'], name: 'homeV1')]
-    public function home(Request $request): Response
+    public function home(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('home_page/index.html.twig');
+        $posts = $entityManager->getRepository(Post::class)->findAll();
+
+        return $this->render('home_page/index.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     #[Route('/contact-v1', methods:['GET', 'POST'], name: 'contactV1')]
