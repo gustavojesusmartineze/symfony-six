@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
     <h1 class="d-flex align-items-center justify-content-between">
-        Home! ✅
+        Categories! ✅
 
         <a href="{{ path('app_post_create') }}" class="btn btn-dark btn-sm">Create post</a>
     </h1>
 
     <table class="table table-striped">
         <tbody>
-        {% for post in posts %}
+        {% for category in categories %}
             <tr>
-                <td>{{ post.title }}</td>
+                <td>{{ category.name }}</td>
                 <td>
-                    <a href="{{ path('app_post_edit', { id: post.id }) }}">
+                    <a href="{{ path('app_category_edit', { id: category.id }) }}">
                         Edit
                     </a>
                 </td>
